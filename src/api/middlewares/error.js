@@ -55,7 +55,7 @@ exports.converter = (err, req, res, next) => {
  */
 exports.notFound = (req, res, next) => {
   const err = new APIError({
-    message: 'Not found',
+    message: 'API request not found',
     status: httpStatus.NOT_FOUND,
   });
   return handler(err, req, res);

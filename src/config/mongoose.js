@@ -24,13 +24,7 @@ if (env === 'development') {
  */
 exports.connect = () => {
   mongoose
-    .connect(mongo.uri, {
-      useCreateIndex: true,
-      keepAlive: 1,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-    })
-    .then(() => console.log('mongoDB connected...'));
+    .connect(mongo.uri)
+    .then(() => console.log('MongoDB connected...'));
   return mongoose.connection;
 };

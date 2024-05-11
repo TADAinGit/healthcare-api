@@ -8,8 +8,9 @@ const { emailConfig } = require('../../../config/vars');
 // such as an email service API or nodemailer-sendgrid-transport
 
 const transporter = nodemailer.createTransport({
-  port: emailConfig.port,
-  host: emailConfig.host,
+  service: "gmail",
+  // port: emailConfig.port,
+  // host: emailConfig.host,
   auth: {
     user: emailConfig.username,
     pass: emailConfig.password,
@@ -18,9 +19,11 @@ const transporter = nodemailer.createTransport({
 });
 
 // verify connection configuration
-transporter.verify((error) => {
+transporter.verify(function(error, success) {
   if (error) {
-    console.log('error with email connection');
+    console.error('Email connection verification failed:', error);
+  } else {
+    console.log('Email connection verified successfully');
   }
 });
 

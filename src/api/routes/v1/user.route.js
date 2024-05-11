@@ -1,5 +1,6 @@
 const express = require('express');
-const validate = require('express-validation');
+// const {validate} = require('express-validation');
+const { validate } =require('../../middlewares/requestValidate');
 const controller = require('../../controllers/user.controller');
 const { authorize, ADMIN, LOGGED_USER } = require('../../middlewares/auth');
 const {
@@ -40,6 +41,7 @@ router
    * @apiError (Forbidden 403)     Forbidden     Only admins can access the data
    */
   .get(authorize(ADMIN), validate(listUsers), controller.list)
+  
   /**
    * @api {post} v1/users Create User
    * @apiDescription Create a new user
