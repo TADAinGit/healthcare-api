@@ -1,5 +1,6 @@
 const Email = require('email-templates');
 const nodemailer = require('nodemailer');
+const logger = require('../../../config/logger');
 const { emailConfig } = require('../../../config/vars');
 
 // SMTP is the main transport in Nodemailer for delivering messages.
@@ -21,9 +22,9 @@ const transporter = nodemailer.createTransport({
 // verify connection configuration
 transporter.verify(function(error, success) {
   if (error) {
-    console.error('Email connection verification failed:', error);
+    logger.error('Email connection verification failed:', error);
   } else {
-    console.log('Email connection verified successfully');
+    logger.info('Email connection verified successfully');
   }
 });
 

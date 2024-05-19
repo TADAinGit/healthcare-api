@@ -1,16 +1,25 @@
 const winston = require('winston');
 
+const LOGGER = {
+  info: "log/info.log",
+  error: "log/error.log",
+  warn: "log/warn.log",
+  debug: "log/debug.log",
+  data: "log/data.log"
+}
+
 const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.json(),
-  transports: [
-    //
-    // - Write to all logs with level `info` and below to `combined.log`
-    // - Write all logs error (and below) to `error.log`.
-    //
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' }),
-  ],
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: Object.entries(LOGGER).map(([key, filename]) => {
+    return new winston.transports.File({
+      filename: filename,
+      level: key,
+      timestamp: true
+    });
+  })
 });
 
 //

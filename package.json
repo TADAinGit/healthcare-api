@@ -15,7 +15,7 @@
     "prestart": "yarn docs",
     "start": "cross-env NODE_ENV=production pm2 start ./src/index.js",
     "dev": "nodemon ./src/index.js",
-    "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "lint": "eslint ./src/ .gitignore --ignore-pattern internals/scripts",
     "lint:fix": "yarn lint --fix",
     "lint:watch": "yarn lint --watch",
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --recursive src/api/tests",
@@ -89,6 +89,7 @@
     "passport-jwt": "4.0.1",
     "pm2": "^5.3.1",
     "pug": "^3.0.2",
+    "socket.io": "^4.7.5",
     "uuid": "^9.0.1",
     "winston": "^3.13.0"
   },
