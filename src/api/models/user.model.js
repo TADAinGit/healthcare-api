@@ -34,6 +34,11 @@ const userSchema = new mongoose.Schema({
     maxlength: 128,
     index: true,
     trim: true,
+    required: true
+  },
+  birth: {
+    type: Date,
+    required: true
   },
   services: {
     facebook: String,

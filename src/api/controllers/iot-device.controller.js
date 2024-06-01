@@ -1,6 +1,5 @@
 const httpStatus = require('http-status');
-const { omit } = require('lodash');
-const IoTDevice = require('../models/iotdevice.model');
+const IoTDevice = require('../models/iot-device.model');
 
 /**
  * Load IoTDevice and append to req.
@@ -48,7 +47,8 @@ exports.replace = async (req, res, next) => {
   try {
     const { iotDevice } = req.locals;
     const newIoTDevice = new IoTDevice(req.body);
-    const newIoTDeviceObject = omit(newIoTDevice.toObject(), '_id');
+    const newIoTDeviceObject = newIoTDevice.toObject();
+    delete newIoTDeviceObject._id;
 
     await iotDevice.updateOne(newIoTDeviceObject, { override: true, upsert: true });
     const savedIoTDevice = await IoTDevice.findById(iotDevice._id);
@@ -64,7 +64,7 @@ exports.replace = async (req, res, next) => {
  * @public
  */
 exports.update = (req, res, next) => {
-  const updatedIoTDevice = omit(req.body, '_id');
+  const updatedIoTDevice = req.body;
   const iotDevice = Object.assign(req.locals.iotDevice, updatedIoTDevice);
 
   iotDevice.save()
@@ -78,8 +78,14 @@ exports.update = (req, res, next) => {
  */
 exports.list = async (req, res, next) => {
   try {
-    const iotDevices = await IoTDevice.list(req.query);
-    res.json(iotDevices);
+    const { page = 1, perPage = 30, ...filters } = req.query;
+    const options = {
+      page: parseInt(page, 10),
+      limit: parseInt(perPage, 10),
+      sort: { createdAt: -1 },
+    };
+    const devices = await IoTDevice.paginate(filters, options);
+    res.json(devices);
   } catch (error) {
     next(error);
   }
