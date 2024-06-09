@@ -77,7 +77,7 @@ exports.listUsers = async (req, res, next) => {
       limit: parseInt(perPage, 10),
       sort: { createdAt: -1 },
     };
-    const users = await User.paginate(filters, options);
+    const users = await User.list(filters, options);
     res.json(users);
   } catch (error) {
     next(error);
