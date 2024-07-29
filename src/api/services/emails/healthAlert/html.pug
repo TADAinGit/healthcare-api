@@ -1,0 +1,90 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Health Alert
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8d7da;
+        padding: 20px;
+      }
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1, h2 {
+        text-align: center;
+        color: #721c24;
+      }
+      .info-table, .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      .info-table td, .data-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      .info-table tr:nth-child(even), .data-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      .info-table tr:hover, .data-table tr:hover {
+        background-color: #f1f1f1;
+      }
+      .info-table th, .data-table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        background-color: #f5c6cb;
+        color: #721c24;
+      }
+      .footer {
+        text-align: center;
+        color: #aaa;
+        font-size: 12px;
+      }
+  body
+    .container
+      h1 Health Alert
+      h2 Hospital Information
+      table.info-table
+        tr
+          th Hospital Name
+          td(id='hospitalName')
+        tr
+          th Date
+          td(id='reportDate')
+      h2 Patient Information
+      table.info-table
+        tr
+          th Patient Name
+          td(id='patientName')
+        tr
+          th Doctor Name
+          td(id='doctorName')
+        tr
+          th Nurse Name
+          td(id='nurseName')
+      h2 Health Data
+      table.data-table
+        tr
+          th Temperature
+          td(id='temperature')
+        tr
+          th BPM
+          td(id='bpm')
+        tr
+          th Avg BPM
+          td(id='avgBpm')
+        tr
+          th SpO2
+          td(id='spo2')
+      h2 Alert Message
+      p(style='color: #721c24; font-weight: bold;') Your health data indicates that you are currently in a critical condition. Please seek immediate medical attention.
+      .footer
+        p &copy; 2024 #{hospitalName}. All rights reserved.
+        p This email was sent on #{reportDate}.
