@@ -21,7 +21,7 @@ const IoTDeviceSchema = new Schema(
     status: {
       type: String,
       required: true,
-      enum: ["active", "inactive", "maintenance"],
+      enum: ["active", "inactive", "maintenance","used"],
     },
     location: {
       latitude: {

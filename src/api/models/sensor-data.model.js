@@ -16,11 +16,6 @@ const sensorDataSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'IoTDevice',
     required: true
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
   }
 }, {
   timestamps: true,

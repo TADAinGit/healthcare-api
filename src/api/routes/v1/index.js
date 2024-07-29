@@ -2,7 +2,8 @@ const express = require('express');
 const userRoutes = require('./user.route');
 const authRoutes = require('./auth.route');
 const healthRoutes = require('./health-check.route');
-const adminRoute = require('./admin.route');
+const adminRoutes = require('./admin.route');
+const iotDeviceRoutes = require('./iot-device.route');
 
 const router = express.Router();
 
@@ -19,6 +20,7 @@ router.use('/docs', express.static('docs'));
 router.use('/users', userRoutes);
 router.use('/auth', authRoutes);
 router.use('/health', healthRoutes)
-router.use('/admin', adminRoute);
+router.use('/admin', adminRoutes);
+router.use('/iot-devices', iotDeviceRoutes)
 
 module.exports = router;

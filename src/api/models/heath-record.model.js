@@ -17,7 +17,7 @@ const HealthRecordSchema = new Schema(
       type: String,
       enum: Object.values(DIAGNOSIS),
       required: true,
-    }, // Sử dụng enum cho chẩn đoán
+    },
     treatment: {
       type: String,
       required: true,
